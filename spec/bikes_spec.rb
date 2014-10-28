@@ -8,7 +8,7 @@ describe Bike do
     broken_bike.break!
   end
   
-  it 'is not borken when created' do
+  it 'is not broken when created' do
     new_bike = Bike.new
     expect(new_bike).not_to be_broken
     expect(new_bike.broken?).to be false
