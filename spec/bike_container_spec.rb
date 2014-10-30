@@ -25,6 +25,7 @@ describe BikeContainer do
 
   it 'should release a bike' do
     holder.dock(bike)
+    expect(holder.empty?).to be false
     holder.release(bike)
     expect(holder.bike_count).to eq(0)
   end
@@ -37,6 +38,10 @@ describe BikeContainer do
     expect(holder).not_to be_full
     fill_holder(holder)
     expect(holder).to be_full
+  end
+
+  it 'should know when it is empty' do
+  expect(holder.empty?).to be true
   end
 
   it 'should not accept a bike if it is full' do
