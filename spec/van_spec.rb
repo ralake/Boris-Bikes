@@ -1,15 +1,11 @@
 require './lib/van'
 
 describe Van do
-  
-  let(:van) { Van.new(capacity: 10) }
-  let(:bike) {Bike.new}
-  let(:station) { DockingStation.new(capacity: 20) }
 
-  it 'should receive broken bikes from the docking station' do
-    bike.break!
-    station.dock(bike)
-    
+  let(:van) { Van.new(capacity: 312) }
+  
+ it "should allow setting default capacity on initialising" do
+    expect(van.capacity).to eq(312)
   end
 
 end
