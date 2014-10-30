@@ -4,8 +4,9 @@ class ContainerHolder; include BikeContainer; end
 
 describe BikeContainer do
   
-  let(:bike) { Bike.new }
-  let(:bike2) { Bike.new }
+  let(:bike) { double :bike, { :is_a? => true } }
+  let(:working_bike) { double :bike, { :is_a? => true, :broken? => false} }
+  let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
   let(:holder) { ContainerHolder.new }
 
   def fill_holder(holder)
@@ -29,8 +30,7 @@ describe BikeContainer do
   end
 
   it 'should not release a bike that is not there' do
-    holder.dock(bike)
-    expect{ holder.release(bike2) }.to raise_error(BikeNotHereError)
+    expect{ holder.release(bike) }.to raise_error(BikeNotHereError)
   end
 
   it 'should know when it is full' do
@@ -45,8 +45,6 @@ describe BikeContainer do
   end
 
   it 'should provide a list of the available bikes' do
-  broken_bike, working_bike = Bike.new, Bike.new
-  broken_bike.break!
   holder.dock(broken_bike)
   holder.dock(working_bike)
   expect(holder.available_bikes).to eq ([working_bike])  
