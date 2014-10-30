@@ -5,6 +5,7 @@ class ContainerHolder; include BikeContainer; end
 describe BikeContainer do
   
   let(:bike) { Bike.new }
+  let(:bike2) { Bike.new }
   let(:holder) { ContainerHolder.new }
 
   def fill_holder(holder)
@@ -21,6 +22,11 @@ describe BikeContainer do
     holder.dock(bike)
     holder.release(bike)
     expect(holder.bike_count).to eq(0)
+  end
+
+  it 'should not release a bike that is not there' do
+    holder.dock(bike)
+    expect{ holder.release(bike2) }.to raise_error(NoBikeError)
   end
 
   it 'should know when it is full' do
