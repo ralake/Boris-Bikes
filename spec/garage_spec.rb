@@ -18,4 +18,10 @@ describe Garage do
     expect(garage.bikes).to eq garage.available_bikes
   end
 
+  it 'will fix broken bikes on arrival' do
+  bike.break!
+  garage.accept(bike)
+  expect(bike).not_to be_broken
+  end
+
 end
