@@ -19,7 +19,7 @@ module BikeContainer
   end
 
   def dock(bike)
-    raise "Station is full!" if full?
+    raise "Container is full!" if full?
     @bikes << bike
   end
 
