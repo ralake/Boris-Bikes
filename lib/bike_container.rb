@@ -1,6 +1,18 @@
-class NoBikeError < Exception
+class BikeNotHereError < Exception
   def message
     "This bike is not here"
+  end
+end
+
+class HolderFullError < Exception
+  def message
+    "This holder is full"
+  end
+end
+
+class NotABike < Exception
+  def message
+    "This is not a bike"
   end
 end
 
@@ -25,12 +37,13 @@ module BikeContainer
   end
 
   def dock(bike)
-    raise "Container is full!" if full?
+    raise NotABike unless bike.is_a?(Bike)
+    raise HolderFullError if full?
     @bikes << bike
   end
 
   def release(bike)
-    raise NoBikeError unless bikes.include?(bike)
+    raise BikeNotHereError unless bikes.include?(bike)
     bikes.delete(bike)
   end
 

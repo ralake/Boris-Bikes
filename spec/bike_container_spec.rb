@@ -12,6 +12,10 @@ describe BikeContainer do
     holder.capacity.times { holder.dock(Bike.new) }
   end
 
+  it 'should only interact with bikes' do
+    expect{ holder.dock(:not_a_bike) }.to raise_error(NotABike)
+  end
+
   it 'should accept a bike' do
     expect(holder.bike_count).to eq(0)
     holder.dock(bike)
@@ -26,7 +30,7 @@ describe BikeContainer do
 
   it 'should not release a bike that is not there' do
     holder.dock(bike)
-    expect{ holder.release(bike2) }.to raise_error(NoBikeError)
+    expect{ holder.release(bike2) }.to raise_error(BikeNotHereError)
   end
 
   it 'should know when it is full' do
@@ -37,7 +41,7 @@ describe BikeContainer do
 
   it 'should not accept a bike if it is full' do
   fill_holder(holder)
-  expect{ holder.dock(bike) }.to raise_error(RuntimeError)
+  expect{ holder.dock(bike) }.to raise_error(HolderFullError)
   end
 
   it 'should provide a list of the available bikes' do
