@@ -12,4 +12,12 @@ class User
     @bike.break!
   end
 
+  def lose_bike!
+    @bike = nil
+  end
+
+  def rent_bike_from(bike, station)
+    station.release(bike)
+  end
+
 end
