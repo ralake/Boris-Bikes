@@ -9,10 +9,20 @@ describe User do
   it 'should not be initialized with a bike' do
     expect(user_without_bike).not_to have_bike
   end
+
+  it 'can have a bike' do
+    expect(user_with_bike).to have_bike
+  end
+
+  it 'can break a bike by having an accident' do
+    expect(bike).to receive(:break!)
+    user_with_bike.have_accident!
+  end
+
+
   
 end
 
-#Can have a bike
 #Can break a bike
 #Can lose a bike
 #Can Rent a bike

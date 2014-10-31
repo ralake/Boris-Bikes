@@ -5,7 +5,11 @@ class User
   end
 
   def has_bike?
-    @bike
+    !@bike.nil?
+  end
+
+  def have_accident!
+    @bike.break!
   end
 
 end
