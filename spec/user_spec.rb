@@ -36,6 +36,11 @@ describe User do
     expect(user_without_bike).to have_bike
   end
 
+  it 'can return the bike to the docking station' do
+    expect(station).to receive(:dock).with(bike)
+    user_with_bike.return(bike, station)
+  end
+
 end
 
 #can dock bike in docking station

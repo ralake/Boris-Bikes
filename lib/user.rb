@@ -20,4 +20,8 @@ class User
     @bike = station.release(bike)
   end
 
+  def return(bike, station)
+    station.dock(bike)
+  end
+
 end
