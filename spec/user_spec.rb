@@ -27,11 +27,16 @@ describe User do
 
   it 'can rent a bike from a docking station' do
     expect(station).to receive(:release).with(bike)
-    user_without_bike.rent_bike_from(bike, station)
+    user_without_bike.rent(bike, station)
   end
+
+  it 'has the bike after renting it' do
+    expect(station).to receive(:release).with(bike).and_return(bike)
+    user_without_bike.rent(bike, station)
+    expect(user_without_bike).to have_bike
+  end
+
 end
 
-#Can Rent a bike
-#Has the bike after renting it
 #can dock bike in docking station
 #doesnt have the bike after docking it

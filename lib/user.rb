@@ -16,8 +16,8 @@ class User
     @bike = nil
   end
 
-  def rent_bike_from(bike, station)
-    station.release(bike)
+  def rent(bike, station)
+    @bike = station.release(bike)
   end
 
 end
