@@ -59,4 +59,8 @@ module BikeContainer
     @bikes.reject {|bike| bike.broken?}
   end
 
+  # def transfer_broken_bikes_to(holder)
+  #   broken_bikes = bikes.map { |bike| bike.broken? }
+  # end
+
 end

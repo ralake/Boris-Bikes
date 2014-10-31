@@ -41,7 +41,10 @@ describe User do
     user_with_bike.return(bike, station)
   end
 
-end
+  it 'does not have the bike once it has docked it to the station' do
+    allow(station).to receive(:dock).with(bike)  
+    user_with_bike.return(bike, station)
+    expect(user_with_bike).not_to have_bike
+  end
 
-#can dock bike in docking station
-#doesnt have the bike after docking it
+end

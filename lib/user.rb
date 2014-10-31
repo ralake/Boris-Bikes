@@ -13,6 +13,10 @@ class User
   end
 
   def lose_bike!
+    remove_bike
+  end
+
+  def remove_bike
     @bike = nil
   end
 
@@ -22,6 +26,7 @@ class User
 
   def return(bike, station)
     station.dock(bike)
+    remove_bike
   end
 
 end

@@ -4,6 +4,8 @@ require './lib/bikes'
 
 describe Garage do
 
+  it_behaves_like BikeContainer
+
   let(:garage) {Garage.new(capacity: 200) }
   let(:bike) { double :bike , { :is_a? => true, :fix! => :any_value, :broken? => false } }
 
