@@ -13,15 +13,11 @@ describe Garage do
     expect(garage.capacity).to eq(200)
   end
 
-  it 'can fix a bike' do
+  it 'can fix bikes that it holds' do
     garage.dock(bike)
     garage.fix_bikes
+    expect(bike).not_to be_broken
     expect(garage.bikes).to eq garage.available_bikes
-  end
-
-  it 'will fix broken bikes on arrival' do
-  garage.accept(bike)
-  expect(bike).not_to be_broken
   end
 
 end
