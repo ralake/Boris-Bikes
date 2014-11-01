@@ -61,6 +61,11 @@ module BikeContainer
     bikes.select { |bike| bike.broken? }
   end
 
+  def transfer_bikes_to(container)
+    give_broken_bikes_to(container)
+    give_fixed_bikes_to(container)
+  end
+
   def give_broken_bikes_to(container)
     if container.class == DockingStation
       return
