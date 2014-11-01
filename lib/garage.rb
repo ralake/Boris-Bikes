@@ -17,4 +17,7 @@ class Garage
     dock(bike)
   end
 
+  # Method for interacting with van will be similar to van with station
+  
+
 end

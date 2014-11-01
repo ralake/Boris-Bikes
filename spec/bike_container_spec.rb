@@ -5,6 +5,7 @@ shared_examples BikeContainer do
   let(:working_bike) { double :bike, { :is_a? => true, :broken? => false} }
   let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
   let(:holder) { described_class.new }
+  let(:other_holder) { described_class.new }
   let(:van) { double :van }
 
   def fill_holder(holder)
@@ -53,12 +54,9 @@ shared_examples BikeContainer do
     expect(holder.available_bikes).to eq ([working_bike])  
   end
 
-  xit 'should transfer broken bikes to other container holders' do
-    expect(van).to receive(:bike_count)
-    expect(van).to receive(:bikes)
+  it 'should know how many broken bikes it has' do
     holder.dock(broken_bike)
-    holder.transfer_broken_bikes_to(van)
-    expect(van.bike_count).to eq(0)
+    expect(holder.broken_bikes).to eq ([broken_bike])
   end
 
 end
