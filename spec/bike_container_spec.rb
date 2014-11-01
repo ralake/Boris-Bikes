@@ -1,5 +1,6 @@
 require './lib/bike_container'
-require './lib/docking_station'
+require './lib/van'
+require './lib/garage'
 
 shared_examples BikeContainer do
   
@@ -7,6 +8,9 @@ shared_examples BikeContainer do
   let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
   let(:holder) { described_class.new }
   let(:other_holder) { described_class.new }
+  let(:station) { double :docking_station, { :class => DockingStation } }
+  let(:van) { Van.new }
+  let(:garage) { Garage.new }
 
   def fill_holder(holder)
     holder.capacity.times { holder.dock(working_bike) }
@@ -60,10 +64,10 @@ shared_examples BikeContainer do
   end
 
   it 'should give broken bikes to the garage or the van' do
-    holder.dock(broken_bike)
-    holder.give_broken_bikes_to(other_holder)
-    expect(other_holder.bike_count).to eq(1)
-    expect(holder.bike_count).to eq(0)
+    van.dock(broken_bike)
+    van.give_broken_bikes_to(garage)
+    expect(garage.bike_count).to eq(1)
+    expect(van.bike_count).to eq(0)
   end
 
   it 'should give fixed bikes to the docking station or the van' do
@@ -71,6 +75,11 @@ shared_examples BikeContainer do
     holder.give_fixed_bikes_to(other_holder)
     expect(other_holder.bike_count).to eq(1)
     expect(holder.bike_count).to eq(0)
+  end
+
+  it 'should not give broken bikes to the docking station' do
+    holder.dock(broken_bike)
+    expect(holder.give_broken_bikes_to(station)).to be_nil
   end
 
 end

@@ -12,7 +12,4 @@ describe DockingStation do
     expect(station.capacity).to eq(123)
   end
 
-  xit 'should not accept broken bikes from the van' do
-  end
-
 end

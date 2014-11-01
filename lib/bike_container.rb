@@ -62,8 +62,12 @@ module BikeContainer
   end
 
   def give_broken_bikes_to(container)
-    container.bikes.push(*broken_bikes)
-    bikes.delete_if { |bike| bike.broken? }
+    if container.class == DockingStation
+      return
+    else
+      container.bikes.push(*broken_bikes)
+      bikes.delete_if { |bike| bike.broken? }
+    end
   end
 
   def give_fixed_bikes_to(container)
