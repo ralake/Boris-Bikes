@@ -66,4 +66,9 @@ module BikeContainer
     bikes.delete_if { |bike| bike.broken? }
   end
 
+  def give_fixed_bikes_to(container)
+    container.bikes.push(*available_bikes)
+    bikes.delete_if { |bike| !bike.broken? }
+  end
+
 end

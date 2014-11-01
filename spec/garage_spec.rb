@@ -15,7 +15,7 @@ describe Garage do
 
   it 'can fix bikes that it holds' do
     garage.dock(bike)
-    garage.fix_bikes
+    garage.fix_bikes!
     expect(bike).not_to be_broken
     expect(garage.bikes).to eq garage.available_bikes
   end
