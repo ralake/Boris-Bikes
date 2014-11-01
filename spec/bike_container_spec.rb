@@ -58,4 +58,21 @@ shared_examples BikeContainer do
     expect(holder.broken_bikes).to eq ([broken_bike])
   end
 
+  it 'should give broken bikes to the garage or the van' do
+    holder.dock(broken_bike)
+    holder.give_broken_bikes_to(other_holder)
+    expect(other_holder.bike_count).to eq(1)
+    expect(holder.bike_count).to eq(0)
+  end
+
+  it 'should give fixed bikes to the station or the van' do
+    holder.dock(working_bike)
+    holder.give_fixed_bikes_to(other_holder)
+    expect(other_holder.bike_count).to eq(1)
+    expect(holder.bike_count).to eq(0)
+  end
+
+  xit 'should not give broken bikes to the docking station' do
+  end
+
 end

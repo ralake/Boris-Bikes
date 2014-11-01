@@ -61,4 +61,14 @@ module BikeContainer
     bikes.select { |bike| bike.broken? }
   end
 
+  def give_broken_bikes_to(container)
+    container.bikes << self.bikes.select! { |bike| bike.broken? }
+    self.bikes.delete_if { |bike| bike.broken? }
+  end
+
+  def give_fixed_bikes_to(container)
+    container.bikes << self.bikes.select! { |bike| !bike.broken? }
+    self.bikes.delete_if { |bike| !bike.broken? }
+  end
+
 end
