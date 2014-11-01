@@ -6,7 +6,6 @@ shared_examples BikeContainer do
   let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
   let(:holder) { described_class.new }
   let(:other_holder) { described_class.new }
-  let(:van) { double :van }
 
   def fill_holder(holder)
     holder.capacity.times { holder.dock(working_bike) }
