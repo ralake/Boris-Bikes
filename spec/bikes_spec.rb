@@ -1,13 +1,7 @@
 require './lib/bikes'
 
 describe Bike do
-
-  let(:broken_bike) {Bike.new}
-
-  before(:each) do
-    broken_bike.break!
-  end
-  
+ 
   it 'is not broken when created' do
     new_bike = Bike.new
     expect(new_bike).not_to be_broken
@@ -15,6 +9,8 @@ describe Bike do
   end
 
   it 'can break' do
+    broken_bike = Bike.new
+    broken_bike.break!
     expect(broken_bike).to be_broken
   end
 

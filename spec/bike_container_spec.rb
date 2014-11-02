@@ -25,7 +25,7 @@ shared_examples BikeContainer do
 
   it 'should release a bike' do
     holder.dock(working_bike)
-    expect(holder.empty?).to be false
+    expect(holder.bike_count).to eq(1)
     holder.release(working_bike)
     expect(holder.bike_count).to eq(0)
   end

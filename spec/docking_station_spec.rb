@@ -4,9 +4,8 @@ describe DockingStation do
 
   it_behaves_like BikeContainer
 
-  let(:station) { DockingStation.new(:capacity => 123) }
-
   it "should allow setting default capacity on initialising" do
+    station = DockingStation.new(capacity: 123)
     expect(station.capacity).to eq(123)
   end
 
