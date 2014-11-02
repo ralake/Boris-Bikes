@@ -8,9 +8,6 @@ shared_examples BikeContainer do
   let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
   let(:holder) { described_class.new(capacity: 2) }
   let(:other_holder) { described_class.new(capacity: 1) }
-  let(:station) { double :docking_station, { :class => DockingStation } }
-  let(:van) { Van.new(capacity: 1) }
-  let(:garage) { Garage.new(capacity: 1) }
 
   def fill_holder(holder)
     holder.capacity.times { holder.dock(working_bike) }
@@ -64,6 +61,8 @@ shared_examples BikeContainer do
   end
 
   it 'should give broken bikes to the garage or the van' do
+    garage = Garage.new(capacity: 1)
+    van = Van.new 
     van.dock(broken_bike)
     van.give_broken_bikes_to(garage)
     expect(garage.bike_count).to eq(1)
@@ -78,6 +77,7 @@ shared_examples BikeContainer do
   end
 
   it 'should not give broken bikes to the docking station' do
+    station { double :docking_station, { :class => DockingStation } }
     holder.dock(broken_bike)
     expect(holder.give_broken_bikes_to(station)).to be_nil
   end
