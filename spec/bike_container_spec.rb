@@ -49,7 +49,7 @@ shared_examples BikeContainer do
     expect{ holder.dock(working_bike) }.to raise_error(HolderFullError)
   end
 
-  it 'should provide a list of the available bikes' do
+  it 'should know how many available bikes it has' do
     holder.dock(broken_bike)
     holder.dock(working_bike)
     expect(holder.available_bikes).to eq ([working_bike])  
@@ -61,8 +61,8 @@ shared_examples BikeContainer do
   end
 
   it 'should give broken bikes to the garage or the van' do
+    van = Van.new
     garage = Garage.new(capacity: 1)
-    van = Van.new 
     van.dock(broken_bike)
     van.give_broken_bikes_to(garage)
     expect(garage.bike_count).to eq(1)
@@ -77,7 +77,7 @@ shared_examples BikeContainer do
   end
 
   it 'should not give broken bikes to the docking station' do
-    station { double :docking_station, { :class => DockingStation } }
+    station = double("docking station", :class => DockingStation)
     holder.dock(broken_bike)
     expect(holder.give_broken_bikes_to(station)).to be_nil
   end
