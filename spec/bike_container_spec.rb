@@ -6,11 +6,11 @@ shared_examples BikeContainer do
   
   let(:working_bike) { double :bike, { :is_a? => true, :broken? => false} }
   let(:broken_bike) { double :bike, { :is_a? => true, :broken? => true} }
-  let(:holder) { described_class.new }
-  let(:other_holder) { described_class.new }
+  let(:holder) { described_class.new(capacity: 2) }
+  let(:other_holder) { described_class.new(capacity: 1) }
   let(:station) { double :docking_station, { :class => DockingStation } }
-  let(:van) { Van.new }
-  let(:garage) { Garage.new }
+  let(:van) { Van.new(capacity: 1) }
+  let(:garage) { Garage.new(capacity: 1) }
 
   def fill_holder(holder)
     holder.capacity.times { holder.dock(working_bike) }

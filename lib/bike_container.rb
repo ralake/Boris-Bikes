@@ -46,7 +46,7 @@ module BikeContainer
   end
 
   def full?
-    bike_count == @capacity
+    bike_count >= @capacity
   end
 
   def empty?
@@ -58,21 +58,28 @@ module BikeContainer
   end
 
   def broken_bikes
-    bikes.select { |bike| bike.broken? }
+    @bikes.select { |bike| bike.broken? }
   end
 
   def give_broken_bikes_to(container)
     if container.class == DockingStation
       return
     else
-      container.bikes.push(*broken_bikes)
-      bikes.delete_if { |bike| bike.broken? }
+      get_broken_bikes(container)
     end
   end
 
+  def get_broken_bikes(container)
+    unless container.full?
+      broken_bikes.each { |bike| container.dock(bike); self.release(bike) }
+    end
+  end
+
+
   def give_fixed_bikes_to(container)
-    container.bikes.push(*available_bikes)
-    bikes.delete_if { |bike| !bike.broken? }
+    unless container.full?
+      available_bikes.each { |bike| container.dock(bike); self.release(bike) }
+    end
   end
 
 end
