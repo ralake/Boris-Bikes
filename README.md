@@ -1,6 +1,7 @@
 Boris Bikes
 ===========
 [![Code Climate](https://codeclimate.com/github/ralake/Boris-Bikes/badges/gpa.svg)](https://codeclimate.com/github/ralake/Boris-Bikes)
+
 Makers Academy Week 1 Exercise
 
 An introduction to OOP and OOD, Boris bikes is a program that mimics the london bike rental service. The first step towards building a domain model and deciding which classes were needed was to describe the problem in plain english...
