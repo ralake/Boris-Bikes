@@ -1,6 +1,7 @@
-require './bikes'
+require './bike'
 require './user'
 require './bike_container'
 require './van'
 require './docking_station'
 require './garage'
+require './exceptions'

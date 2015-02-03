@@ -8,8 +8,8 @@ class Garage
     self.capacity = options.fetch(:capacity, capacity)
   end
 
-  def fix_bikes!
-    bikes.map { |bike| bike.fix! }
+  def fix_bikes
+    bikes.map { |bike| bike.fix }
   end
   
 end

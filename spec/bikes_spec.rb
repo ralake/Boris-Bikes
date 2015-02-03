@@ -1,17 +1,17 @@
-require './lib/bikes'
+require './lib/bike'
 
 describe Bike do
+
+  let(:bike) { Bike.new }
  
   it 'is not broken when created' do
-    new_bike = Bike.new
-    expect(new_bike).not_to be_broken
-    expect(new_bike.broken?).to be false
+    expect(bike).not_to be_broken
+    expect(bike.broken?).to be false
   end
 
   it 'can break' do
-    broken_bike = Bike.new
-    broken_bike.break!
-    expect(broken_bike).to be_broken
+    bike.break
+    expect(bike).to be_broken
   end
 
 end 

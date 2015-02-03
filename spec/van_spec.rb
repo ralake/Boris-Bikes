@@ -1,6 +1,4 @@
 require './lib/van'
-require './lib/docking_station'
-require './lib/garage'
 require_relative 'bike_container_spec'
 
 describe Van do

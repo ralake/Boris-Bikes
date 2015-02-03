@@ -8,16 +8,12 @@ class User
     !@bike.nil?
   end
 
-  def have_accident!
-    @bike.break!
+  def have_accident
+    @bike.break
   end
 
-  def lose_bike!
+  def lose_bike
     remove_bike
-  end
-
-  def remove_bike
-    @bike = nil
   end
 
   def rent(bike, station)
@@ -27,6 +23,12 @@ class User
   def return(bike, station)
     station.dock(bike)
     remove_bike
+  end
+
+  private 
+  
+  def remove_bike
+    @bike = nil
   end
 
 end

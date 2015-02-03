@@ -1,22 +1,8 @@
-class BikeNotHereError < Exception
-  def message
-    "This bike is not here"
-  end
-end
-
-class HolderFullError < Exception
-  def message
-    "This holder is full"
-  end
-end
-
-class NotABike < Exception
-  def message
-    "This is not a bike"
-  end
-end
+require 'exceptions'
 
 module BikeContainer
+
+  attr_writer :capacity
 
   DEFAULT_CAPACITY = 10
 
@@ -27,8 +13,6 @@ module BikeContainer
   def capacity
     @capacity ||= DEFAULT_CAPACITY
   end
-
-  attr_writer :capacity
 
   def bike_count
     bikes.count
@@ -62,23 +46,20 @@ module BikeContainer
   end
 
   def give_broken_bikes_to(container)
-    if container.class == DockingStation
-      return
-    else
-      get_broken_bikes(container)
-    end
+    if container.class == DockingStation then return end
+    get_broken_bikes(container)
   end
 
   def get_broken_bikes(container)
     unless container.full?
-      broken_bikes.each { |bike| container.dock(bike); self.release(bike) }
+      broken_bikes.each { |bike| container.dock(bike); release(bike) }
     end
   end
 
 
   def give_fixed_bikes_to(container)
     unless container.full?
-      available_bikes.each { |bike| container.dock(bike); self.release(bike) }
+      available_bikes.each { |bike| container.dock(bike); release(bike) }
     end
   end
 

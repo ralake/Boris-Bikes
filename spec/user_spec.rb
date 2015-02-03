@@ -2,10 +2,10 @@ require './lib/user'
 
 describe User do
 
-  let(:station) { double :docking_station}
-  let(:bike) { double :bike}
+  let(:station)           { double :docking_station}
+  let(:bike)              { double :bike}
   let(:user_without_bike) { User.new }
-  let(:user_with_bike) { User.new(bike) }
+  let(:user_with_bike)    { User.new(bike) }
 
   it 'should not be initialized with a bike' do
     expect(user_without_bike).not_to have_bike
@@ -16,12 +16,12 @@ describe User do
   end
 
   it 'can break a bike by having an accident' do
-    expect(bike).to receive(:break!)
-    user_with_bike.have_accident!
+    expect(bike).to receive(:break)
+    user_with_bike.have_accident
   end
 
   it 'can lose a bike' do
-    user_with_bike.lose_bike!
+    user_with_bike.lose_bike
     expect(user_with_bike).not_to have_bike
   end
 
