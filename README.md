@@ -68,5 +68,5 @@ How to use
 ----------
 ```shell
 irb
-require './boris_bikes'
+require './lib/boris_bikes'
 ```
