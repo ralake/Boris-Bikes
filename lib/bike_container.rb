@@ -46,21 +46,16 @@ module BikeContainer
   end
 
   def give_broken_bikes_to(container)
-    if container.class == DockingStation then return end
-    get_broken_bikes(container)
+    container.class == DockingStation ? return : get_broken_bikes(container) 
   end
 
   def get_broken_bikes(container)
-    unless container.full?
-      broken_bikes.each { |bike| container.dock(bike); release(bike) }
-    end
+    broken_bikes.each { |bike| container.dock(bike); release(bike) } unless container.full?
   end
 
 
   def give_fixed_bikes_to(container)
-    unless container.full?
-      available_bikes.each { |bike| container.dock(bike); release(bike) }
-    end
+    available_bikes.each { |bike| container.dock(bike); release(bike) } unless container.full?
   end
 
 end
